@@ -14,15 +14,11 @@ public class StudentManager {
     return student;
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws StudentNotFoundException{
     StudentManager manager = new StudentManager();
-    Student student = null;
     for (int i = 0; i < IDs.length-1; i++) {
-      try {
-        student = manager.find(IDs[i]);
-      } catch (StudentNotFoundException e) {
-          e.printStackTrace();
-      }
+        Student    student = manager.find(IDs[i]);
+
         System.out.println("Student name " + student.getName());
     }
 

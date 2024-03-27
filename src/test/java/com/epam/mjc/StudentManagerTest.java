@@ -7,25 +7,22 @@ import java.util.Arrays;
 import org.junit.Test;
 
 
-public class StudentManagerTest {
+public class StudentManagerTest extends Exception{
     StudentManager manager = new StudentManager();
 
     @Test(expected = IllegalArgumentException.class)
-    public void findNotValid(){
+    public void findNotValid() throws IllegalArgumentException{
         try {
             manager.find(1000);
         } catch (StudentNotFoundException e) {
-            throw new IllegalArgumentException(e);
+         throw new IllegalArgumentException(e);
         }
+
     }
 
     @Test
-    public void findValidStudent() {
-        try {
-            assertNotNull(manager.find(1));
-        } catch (StudentNotFoundException e) {
-            e.printStackTrace();
-        }
+    public void findValidStudent() throws StudentNotFoundException {
+        assertNotNull(manager.find(1));
     }
 
     @Test
@@ -38,11 +35,11 @@ public class StudentManagerTest {
     }
 
     @Test
-    public void testIDsNotChangedV1() {
+    public void testIDsNotChangedV1(){
         try {
             assertNull("Student enum should be have only 10 values.", manager.find(11));
         } catch (StudentNotFoundException e) {
-
+            throw  new RuntimeException("Student enum should be have only 10 values.", e);
         }
     }
 
@@ -50,7 +47,7 @@ public class StudentManagerTest {
     public void testIDsNotChangedV2() {
         try {
             assertEquals(Student.ARTUR, manager.find(Arrays.stream(Student.values()).map(Student::getId).max(Long::compare).get()));
-        } catch (StudentNotFoundException e ) {
+        } catch (StudentNotFoundException e) {
             throw new RuntimeException(e);
         }
 
