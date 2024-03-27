@@ -23,7 +23,7 @@ public class StudentManagerTest {
     public void findValidStudent() {
         try {
             assertNotNull(manager.find(1));
-        } catch (IllegalArgumentException | StudentNotFoundException e) {
+        } catch (StudentNotFoundException e) {
             e.printStackTrace();
         }
     }
