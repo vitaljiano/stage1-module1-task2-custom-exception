@@ -3,7 +3,6 @@ package com.epam.mjc;
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
-import java.util.stream.Collectors;
 
 import org.junit.Test;
 
@@ -23,29 +22,29 @@ public class StudentManagerTest {
     }
 
     @Test
-    public void findValidStudent() {
+    public void findValidStudent() throws StudentNotFoundException {
         try {
             assertNotNull(manager.find(1));
-        } catch (IllegalArgumentException | StudentNotFoundException e) {
+        } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
     }
 
     @Test
-    public void testExceptionMessage() {
+    public void testExceptionMessage() throws StudentNotFoundException {
         try {
             assertNotNull(manager.find(1000));
-        } catch (IllegalArgumentException | StudentNotFoundException e) {
+        } catch (StudentNotFoundException e) {
             assertEquals("Could not find student with ID 1000", e.getMessage());
         }
     }
 
     @Test
-    public void testIDsNotChangedV1() {
+    public void testIDsNotChangedV1() throws StudentNotFoundException {
         try {
             assertNull("Student enum should be have only 10 values.", manager.find(11));
         } catch (StudentNotFoundException e) {
-
+            throw new StudentNotFoundException("Student enum should be have only 10 values.");
         }
     }
 
