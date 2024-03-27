@@ -50,7 +50,7 @@ public class StudentManagerTest {
     public void testIDsNotChangedV2() {
         try {
             assertEquals(Student.ARTUR, manager.find(Arrays.stream(Student.values()).map(Student::getId).max(Long::compare).get()));
-        } catch (StudentNotFoundException e) {
+        } catch (StudentNotFoundException e ) {
             throw new RuntimeException(e);
         }
 
