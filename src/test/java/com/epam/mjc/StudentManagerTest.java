@@ -11,7 +11,7 @@ public class StudentManagerTest {
     StudentManager manager = new StudentManager();
 
     @Test(expected = IllegalArgumentException.class)
-    public void findNotValid() throws StudentNotFoundException {
+    public void findNotValid(){
         try {
             manager.find(1000);
         } catch (StudentNotFoundException e) {
