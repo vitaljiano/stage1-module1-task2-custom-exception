@@ -44,7 +44,7 @@ public class StudentManagerTest {
         try {
             assertNull("Student enum should be have only 10 values.", manager.find(11));
         } catch (StudentNotFoundException e) {
-            throw new StudentNotFoundException("Student enum should be have only 10 values.");
+            new StudentNotFoundException("Student enum should be have only 10 values.");
         }
     }
 
