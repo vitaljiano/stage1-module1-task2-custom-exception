@@ -15,9 +15,8 @@ public class StudentManagerTest extends Exception{
         try {
             manager.find(1000);
         } catch (StudentNotFoundException e) {
-         throw new IllegalArgumentException(e);
+            throw new IllegalArgumentException(e);
         }
-
     }
 
     @Test
@@ -26,20 +25,20 @@ public class StudentManagerTest extends Exception{
     }
 
     @Test
-    public void testExceptionMessage()  {
+    public void testExceptionMessage() {
         try {
             assertNotNull(manager.find(1000));
-        } catch (StudentNotFoundException e) {
+        } catch (IllegalArgumentException | StudentNotFoundException e) {
             assertEquals("Could not find student with ID 1000", e.getMessage());
         }
     }
 
     @Test
-    public void testIDsNotChangedV1(){
+    public void testIDsNotChangedV1() throws StudentNotFoundException{
         try {
             assertNull("Student enum should be have only 10 values.", manager.find(11));
         } catch (StudentNotFoundException e) {
-            throw  new RuntimeException("Student enum should be have only 10 values.", e);
+           new StudentNotFoundException("Student enum should be have only 10 values.");
         }
     }
 
