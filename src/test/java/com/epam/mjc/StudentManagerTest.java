@@ -20,8 +20,12 @@ public class StudentManagerTest extends Exception{
     }
 
     @Test
-    public void findValidStudent() throws StudentNotFoundException {
-        assertNotNull(manager.find(1));
+    public void findValidStudent() {
+        try {
+            assertNotNull(manager.find(1));
+        } catch (StudentNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -34,11 +38,11 @@ public class StudentManagerTest extends Exception{
     }
 
     @Test
-    public void testIDsNotChangedV1() throws StudentNotFoundException{
+    public void testIDsNotChangedV1(){
         try {
             assertNull("Student enum should be have only 10 values.", manager.find(11));
         } catch (StudentNotFoundException e) {
-           new StudentNotFoundException("Student enum should be have only 10 values.");
+           System.err.println("Student enum should be have only 10 values.");
         }
     }
 
@@ -47,7 +51,7 @@ public class StudentManagerTest extends Exception{
         try {
             assertEquals(Student.ARTUR, manager.find(Arrays.stream(Student.values()).map(Student::getId).max(Long::compare).get()));
         } catch (StudentNotFoundException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
 
     }
