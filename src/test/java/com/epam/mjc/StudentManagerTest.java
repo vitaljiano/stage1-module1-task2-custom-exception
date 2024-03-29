@@ -7,7 +7,7 @@ import java.util.Arrays;
 import org.junit.Test;
 
 
-public class StudentManagerTest extends Exception{
+public class StudentManagerTest {
     StudentManager manager = new StudentManager();
 
     @Test(expected = IllegalArgumentException.class)
@@ -32,7 +32,7 @@ public class StudentManagerTest extends Exception{
     public void testExceptionMessage() {
         try {
             assertNotNull(manager.find(1000));
-        } catch (IllegalArgumentException | StudentNotFoundException e) {
+        } catch (IllegalArgumentException e) {
             assertEquals("Could not find student with ID 1000", e.getMessage());
         }
     }
